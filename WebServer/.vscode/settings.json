@@ -1,0 +1,7 @@
+{
+    "C_Cpp.default.includePath": [
+        "C:\\Users\\Kreso\\Documents\\Arduino\\libraries\\*",
+        "C:\\Program Files (x86)\\Arduino\\libraries\\*",
+        "C:\\Program Files (x86)\\Arduino\\hardware\\*"
+    ]
+}

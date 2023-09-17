@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="hr">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="automatski sustav za navodnjavnje">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+    integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+    crossorigin=""/>
+    
+    <title>Iot sustav za navodnjavanje</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+            
+            <!-- Sidebar - Brand -->
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                <div class="sidebar-brand-text mx-3">Iot sustav navodnjavanja</div>
+            </a>
+            
+            <!-- Divider -->
+            
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
+            <!-- Heading -->
+            <div class="sidebar-heading">
+                Su&#269;elje
+            </div>
+            
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="./login.html">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>Postavke</span>
+                </a>
+            </li>
+            
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="./index.html">
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Po&#269;etna</span>
+                </a>
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+            
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="charts.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Grafovi</span></a>
+                </li>
+                
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Tablice</span></a>
+            </li>
+            
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+            
+            <!-- Sidebar Toggler (Sidebar) -->
+            <div class="text-center d-none d-md-inline">
+                <button class="rounded-circle border-0" id="sidebarToggle"></button>
+            </div>
+            
+            
+        </ul>
+        <!-- End of Sidebar -->
+        
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+            
+            <!-- Main Content -->
+            <div id="content">
+                
+                
+                        <div id="map" style="height: 180px;"></div>
+
+                        <iframe style="height:450px; width:100%" src="https://prognoza.hr/3dslika2_print_tp.php?Code=Dubrovnik" frameborder="0"></iframe>
+                <!-- Begin Page Content -->
+                <div class="container-fluid" id="device_list">
+                    
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <div class="container-fluid" style="margin-top: 15px;">
+                            <h1 class="h3 mb-0 text-gray-800 font-weight-bold">Popis Iot ure&#273;aja na mre&#382;i:</h1>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- Content Row -->
+                    <div class="row" id="device_data_template" style="display: none;">
+                        
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-success shadow h-100 py-2 mh-30">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                                Temperatura</div>
+                                            <div name="temp" class="h5 mb-0 font-weight-bold text-gray-800 ">25&deg;C</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-thermometer-quarter fa-2x text-blue-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Vlaga</div>
+                                            <div name="vlaga" class="h5 mb-0 font-weight-bold text-gray-800">75&percnt;</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i class="fa fa-tint fa-2x text-blue-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-info shadow h-100 py-2 mh-30">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Naziv Iot Ure&#273;aja</div>
+                                            <div  name="naziv" class="h5 mb-0 font-weight-bold text-gray-800 " >154645</div>
+                                        </div>
+                                        <hr class="sidebar-divider d-none d-md-block">
+                                        <div class="col-auto">
+                                            <i class="fa fa-microchip fa-2x text-blue-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-danger shadow h-100 py-2 mh-30">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Zadnje o&#269;itanje</div>
+                                            <div  name="naziv" class="h5 mb-0 font-weight-bold text-gray-800 " >17:34</div>
+                                        </div>
+                                        <hr class="sidebar-divider d-none d-md-block">
+                                        <div class="col-auto">
+                                            <i class="fa fa-clock fa-2x text-blue-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    <!-- Content Row -->
+
+                </div>
+                <!-- /.container-fluid -->
+
+                <div class="row">
+
+                    <!-- Area Chart -->
+                    <div class="col-xl-8 col-lg-7">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Temperatura kroz mjesec</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-area">
+                                    <canvas id="myAreaChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h6 class="m-0 font-weight-bold text-primary">Vrste zemlje na parceli</h6>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body">
+                                <div class="chart-pie pt-4 pb-2">
+                                    <canvas id="myPieChart"></canvas>
+                                </div>
+                                <div class="mt-4 text-center small">
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-primary"></i> Crnica
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-success"></i> Crvenica
+                                    </span>
+                                    <span class="mr-2">
+                                        <i class="fas fa-circle text-info"></i> Podzol
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+        
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+    integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+    crossorigin=""></script>
+
+<script>
+
+            function newData(device_ID, temp, vlaga, naziv) {
+                if (document.getElementsByName(device_ID).length == 0) {
+                    addDevice(device_ID, temp, vlaga, naziv);
+                }
+                else {
+                    updateDevice(device_ID, temp, vlaga);
+                }
+            }
+
+            function updateDevice(device_ID, temp, vlaga) {
+                document.getElementById(device_ID).querySelector('div[name="temp"]').innerHTML = temp + "&deg;C";
+                document.getElementById(device_ID).querySelector('div[name="vlaga"]').innerHTML = vlaga + "&percnt;";
+            }
+
+
+            function addDevice(device_ID, temp, vlaga, naziv) {
+                var template = document.getElementById("device_data_template");
+                var new_device = template.cloneNode(true);
+                new_device.setAttribute("id", device_ID);
+                new_device.setAttribute("name", device_ID);
+                new_device.querySelector('div[name="naziv"]').innerHTML = naziv;
+                new_device.querySelector('div[name="temp"]').innerHTML = temp + "&deg;C";
+                new_device.querySelector('div[name="vlaga"]').innerHTML = vlaga + "&percnt;";
+                document.getElementById("device_list").appendChild(new_device);
+                new_device.setAttribute("style", "");
+            }
+
+            // Event handling
+
+if (!!window.EventSource) {
+var source = new EventSource('/events');
+
+source.addEventListener('open', function(e) {
+console.log("Events Connected");
+}, false);
+source.addEventListener('error', function(e) {
+if (e.target.readyState != EventSource.OPEN) {
+console.log("Events Disconnected");
+}
+}, false);
+
+source.addEventListener('message', function(e) {
+console.log("message", e.data);
+}, false);
+
+source.addEventListener('new_readings', function(e) {
+console.log("new_readings", e.data);
+var obj = JSON.parse(e.data);
+document.getElementById("t"+obj.id).innerHTML = obj.temperature.toFixed(2);
+document.getElementById("h"+obj.id).innerHTML = obj.humidity.toFixed(2);
+document.getElementById("rt"+obj.id).innerHTML = obj.readingId;
+document.getElementById("rh"+obj.id).innerHTML = obj.readingId;
+}, false);
+}
+
+//function to dynamically add Leaflet map markers
+function addMarker(lat, lng, map) {
+var marker = new L.marker([lat, lng]).addTo(map);
+}
+
+
+// set map view to a given place and zoom
+var map = L.map('map').setView([42.6507, 18.0944], 15);
+// dubrovnik gps coordinates: 42.6507&deg; N, 18.0944&deg; E
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([42.6501, 18.0945]).addTo(map)
+.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+.openPopup();
+
+L.marker([42.6506, 18.0947]).addTo(map)
+.bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+.openPopup();
+
+L.marker([42.6516, 18.0957]).addTo(map)
+.bindPopup('Ure&#273;aj 3<br> Vlaga 69% <br> Temp: 37&deg;C')
+.openPopup();
+
+</script>
+
+    <script>
+        $(document).ready(function () {
+            document.getElementById("device_data_template").setAttribute("style", "");
+        });
+
+
+    </script>
+
+</body>
+
+</html>

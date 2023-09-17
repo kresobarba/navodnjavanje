@@ -1,0 +1,129 @@
+html {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: inline-block;
+    text-align: center;
+}
+
+p {
+    font-size: 1.2rem;
+}
+
+body {
+    margin: 0;
+}
+
+h3 {
+    margin-top: 0%;
+    margin-bottom: 3%;
+    color:#dedede;
+}
+
+.topnav {
+    
+    overflow: hidden;
+    background-color: #2f4468;
+    color:#fd7e14;
+    font-size: 1.7rem;
+}
+
+.content {
+    padding: 20px;
+}
+
+.card {
+    padding: 9px;
+    background-color: white;
+    box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, .5);
+}
+
+.cards {
+    max-width: 700px;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.reading {
+    font-size: 2.8rem;
+}
+
+.packet {
+    color: #bebebe;
+}
+
+.card.temperature {
+    color: #fd7e14;
+}
+
+.card.humidity {
+    color: #1b78e2;
+}
+
+.login-container {
+    width: 400px;
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-size: medium;
+}
+
+input[type=submit] {
+    width: 100%;
+    background-color: #fd7e14;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: medium;
+}
+
+input[type=submit]:hover {
+    background-color: #a95109;
+}
+
+.transparent-home-button {
+    padding: 0.7em;
+    padding-top: 0%;
+    padding-bottom: 10px;
+    background-color: transparent; /* or rgba(0, 0, 0, 0) */
+    border: none; /* remove any border */
+    color:#dedede; /* set the text color to white */
+}
+
+a:link, a:visited {
+    
+    color:#dedede;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  a:hover, a:active {
+    color: hsl(0, 1%, 64%);
+  }
+  .naziv
+  {
+      font-size: 23px;
+  }
+
+  .card p
+{
+    /* font-size: large; */
+}
+
